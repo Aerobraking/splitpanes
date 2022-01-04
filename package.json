@@ -15,7 +15,9 @@
     "dist",
     "src/components/splitpanes"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "underscore": "^1.13.2"
+  },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@vue/cli-plugin-babel": "^4.5.13",

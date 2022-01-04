@@ -1,6 +1,6 @@
 <script>
 import { h } from 'vue'
-
+import * as _ from 'underscore'
 export default {
   name: 'splitpanes',
   emits: ['ready', 'resize', 'resized', 'pane-click', 'pane-maximize', 'pane-add', 'pane-remove', 'splitter-click'],
@@ -86,7 +86,7 @@ export default {
       this.touch.activeSplitter = splitterIndex
     },
 
-    onMouseMove (event) {
+    onMouseMove: _.throttle((event)=> {
       if (this.touch.mouseDown) {
         // Prevent scrolling while touch dragging (only works with an active event, eg. passive: false).
         event.preventDefault()
@@ -94,7 +94,7 @@ export default {
         this.calculatePanesSize(this.getCurrentMouseDrag(event))
         this.$emit('resize', this.panes.map(pane => ({ min: pane.min, max: pane.max, size: pane.size })))
       }
-    },
+    },500),
 
     onMouseUp () {
       if (this.touch.dragging) {
